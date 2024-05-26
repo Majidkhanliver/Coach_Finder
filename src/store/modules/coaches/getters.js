@@ -5,5 +5,15 @@ export default {
         hasCoaches(state)
         {
                 return state.coaches && state.coaches.length > 0;
+        },
+        shouldUpdate(state) {
+                const lastFetch = state.lastFetched;
+                if (!lastFetch)
+                {
+                        return true;
+                        
+                        }
+                const currentTimestamp = new Date().getTime();
+                return (currentTimestamp - lastFetch)/1000 > 60
         }
 };

@@ -4,6 +4,7 @@ import actions from './actions'
 export default {
   state() {
     return {
+      lastFetched:null,
       coaches: [
         {
           id: "c1",
