@@ -47,6 +47,7 @@ export default {
                         userId: null,
                         tokenExpiration: null,
                 });
+                localStorage.removeItem("userInfo");
         },
         autoLogin(context, payload) {
                 debugger
