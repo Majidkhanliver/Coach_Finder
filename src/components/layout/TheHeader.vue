@@ -8,13 +8,34 @@
                                 <li>
                                         <router-link to="/coaches">All Coaches</router-link>
                                 </li>
-                                <li>
+                                <li v-if="isAuthenticated">
                                         <router-link to="/requests">Request</router-link>
+                                </li>
+                                <li v-else>
+                                        <router-link to="/auth">Login</router-link>
+                                </li>
+                                <li v-if="isAuthenticated">
+                                        <base-button @click="logout">Logout</base-button>
                                 </li>
                         </ul>
                 </nav>
         </header>
 </template>
+<script>
+export default {
+        methods: {
+                logout() {
+                        this.$store.dispatch('logout');
+                        this.$router.replace('/auth')  
+                }
+        },
+        computed: {
+                isAuthenticated() {
+                        
+                        return this.$store.getters.isAuthenticated
+                }
+        }
+}</script>
 <style scoped>
 header {
         width: 100%;

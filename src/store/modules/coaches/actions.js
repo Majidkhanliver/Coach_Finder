@@ -8,8 +8,10 @@ export default {
       hourlyRate: payload.rate,
       areas: payload.areas,
     };
+    debugger
+    const token = context.rootGetters.token;
     const response = await fetch(
-      `https://coachfinder-236e3-default-rtdb.firebaseio.com/cocahes/${userId}.json`,
+      `https://coachfinder-236e3-default-rtdb.firebaseio.com/coaches/${userId}.json?auth=${token}`,
       {
         method: "put",
         body: JSON.stringify(coachData),
@@ -24,7 +26,7 @@ export default {
   async loadCoaches(context,payload) {
     if (!payload.forceRefresh && !context.getters.shouldUpdate) return;
     const response = await fetch(
-      `https://coachfinder-236e3-default-rtdb.firebaseio.com/cocahes.json`
+      `https://coachfinder-236e3-default-rtdb.firebaseio.com/coaches.json`
     );
     const responseData = await response.json();
     if (!response.ok) {
